@@ -40,6 +40,8 @@ var modfSC = [][2]float32{
 }
 
 func TestModf(t *testing.T) {
+	t.Parallel()
+
 	for i := range len(vf) {
 		if f, g := Modf(vf[i]); !veryclose(modf[i][0], f) || !veryclose(modf[i][1], g) {
 			t.Errorf("Modf(%g) = %g, %g, want %g, %g", vf[i], f, g, modf[i][0], modf[i][1])

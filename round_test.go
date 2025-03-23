@@ -36,6 +36,8 @@ var vfroundSC = [][2]float32{
 }
 
 func TestRound(t *testing.T) {
+	t.Parallel()
+
 	for i := range len(vf) {
 		if f := Round(vf[i]); !alike(round[i], f) {
 			t.Errorf("Round(%g) = %g, want %g", vf[i], f, round[i])
