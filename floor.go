@@ -30,3 +30,14 @@ func Floor(x float32) float32 {
 	d, _ := Modf(x)
 	return d
 }
+
+// Ceil returns the least integer value greater than or equal to x.
+//
+// Special cases are:
+//
+//	Ceil(±0) = ±0
+//	Ceil(±Inf) = ±Inf
+//	Ceil(NaN) = NaN
+func Ceil(x float32) float32 {
+	return -Floor(-x)
+}

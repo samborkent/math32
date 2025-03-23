@@ -76,3 +76,43 @@ func TestFloor(t *testing.T) {
 		}
 	})
 }
+
+var ceil = []float32{
+	5.00000000e+00,
+	8.00000000e+00,
+	Copysign(0, -1),
+	-5.00000000e+00,
+	1.00000000e+01,
+	3.00000000e+00,
+	6.00000000e+00,
+	3.00000000e+00,
+	2.00000000e+00,
+	-8.00000000e+00,
+}
+
+var ceilSC = append(ceilBaseSC,
+	1<<23-1,
+	1<<23,
+	1<<23,
+	-1<<23,
+	-1<<23+1,
+	-1<<23+1,
+	1<<24,
+	-1<<24,
+)
+
+func TestCeil(t *testing.T) {
+	t.Parallel()
+
+	for i := range len(vf) {
+		if f := Ceil(vf[i]); !alike(ceil[i], f) {
+			t.Errorf("Ceil(%g) = %g, want %g", vf[i], f, ceil[i])
+		}
+	}
+
+	for i := range len(vfceilSC) {
+		if f := Ceil(vfceilSC[i]); !alike(ceilSC[i], f) {
+			t.Errorf("Ceil(%g) = %g, want %g", vfceilSC[i], f, ceilSC[i])
+		}
+	}
+}
