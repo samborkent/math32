@@ -30,3 +30,28 @@ func alike(a, b float32) bool {
 	}
 	return false
 }
+
+func tolerance(a, b, e float32) bool {
+	// Multiplying by e here can underflow denormal values to zero.
+	// Check a==b so that at least if a and b are small and identical
+	// we say they match.
+	if a == b {
+		return true
+	}
+	d := a - b
+	if d < 0 {
+		d = -d
+	}
+
+	// note: b is correct (expected) value, a is actual value.
+	// make error tolerance a fraction of b, not a.
+	if b != 0 {
+		e = e * b
+		if e < 0 {
+			e = -e
+		}
+	}
+	return d < e
+}
+
+func veryclose(a, b float32) bool { return tolerance(a, b, 4e-10) }
