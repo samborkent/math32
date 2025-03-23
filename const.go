@@ -1,11 +1,12 @@
 package math32
 
 const (
-	bitLen = 32
-	sgnLen = 1
-	expLen = 8
+	bitLen      = 32
+	sgnLen      = 1
+	expLen      = 8
+	mantissaLen = bitLen - expLen - sgnLen
 
-	shift    = bitLen - expLen - sgnLen
+	shift    = mantissaLen
 	mask     = (1 << expLen) - sgnLen
 	bias     = (1 << (expLen - sgnLen)) - 1
 	signMask = 1 << (bitLen - sgnLen)

@@ -21,6 +21,14 @@ var vf = []float32{
 	-8.68592473e+00,
 }
 
+var ceilBaseSC = []float32{
+	Inf(-1),
+	Copysign(0, -1),
+	0,
+	Inf(1),
+	NaN(),
+}
+
 func alike(a, b float32) bool {
 	switch {
 	case IsNaN(a) && IsNaN(b):
